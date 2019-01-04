@@ -40,7 +40,7 @@ def get_s3fs():
 
 def upload_image(imagename, filepath):
     fs = get_s3fs()
-    with fs.open(filepath, 'w') as fw:
+    with fs.open(filepath, 'wb') as fw:
         imagepath = "./images/" + imagename
         with open(imagepath, 'rb') as fr:
             imagedata = fr.read()

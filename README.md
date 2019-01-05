@@ -1,9 +1,9 @@
 # NOGACab-Raspberry
 ## How to install Raspbian OS on SD card with OS X
-1. With `disk util`, find out which disk mounts the SD card.
+1. With `$ disk util`, find out which disk mounts the SD card.
     - ex) `dev/disk2`
-2. Unmount the SD card with `unmountDisk /dev/disk[no. of disk]`.
-3. Dump the image file with `sudo dd bs=4m if=[image file name].img 
+2. Unmount the SD card with `$ unmountDisk /dev/disk[no. of disk]`.
+3. Dump the image file with `$ sudo dd bs=4m if=[image file name].img 
 of=/dev/rdisk*`. Watch out for the `rdisk*` not `disk*`. It takes about 5 
 minuites, check the progress with <kbd>Ctl</kbd>+<kbd>T</kbd>.
 
@@ -11,7 +11,7 @@ minuites, check the progress with <kbd>Ctl</kbd>+<kbd>T</kbd>.
 ### Internet connection
 
 #### 1. Wired LAN
-1. Open configuration file with `sudo nano /etc/dhcpcd.conf`.
+1. Open configuration file with `$ sudo nano /etc/dhcpcd.conf`.
 2. Uncomment the following lines:
 
         interface eth0
@@ -20,10 +20,10 @@ minuites, check the progress with <kbd>Ctl</kbd>+<kbd>T</kbd>.
         static domain_name_servers=[Gateway]8.8.8.8 ...
 
     and add `static netmask=[Netmask]` at the end of the uncommented block. Then
- `sudo reboot`.
+ `$ sudo reboot`.
  
 #### 2. WIFI (Welcome_KAIST)
-1. Open configuration file with `sudo nano 
+1. Open configuration file with `$ sudo nano 
 /etc/wpa_supplicant/wpa_supplicant.conf`. 
 2. Add the following lines at the end of the file.
 
@@ -50,14 +50,20 @@ minuites, check the progress with <kbd>Ctl</kbd>+<kbd>T</kbd>.
             key_mgmt=NONE
             priotity=1
         }
-3. `sudo reboot`
+3. `$ sudo reboot`
 
 ### Update `apt-get`
 Update `apt-get` before any other package installation.
 
-        sudo apt-get update
-        sudo apt-get upgrade
+        $ sudo apt-get update
+        $ sudo apt-get upgrade
       
+### Configure iptime router
+1. Allocate static internal IP address to Raspberry-pi: [link](http://studyforus.tistory.com/41).
+2. Configure port forward: [link](http://studyforus.tistory.com/35).
+
+
+
 ### Configure ssh server
 #### 1. Basic ssh configuration
 Refer to [this blog](https://jimnong.tistory.com/713).
@@ -70,3 +76,27 @@ port 22.
 #### 2. Run ssh on startup
 Normally, service must be started automatically on startup. If it doesn't, 
 let the starting script run on startup. Refer to [StackExchage](https://raspberrypi.stackexchange.com/questions/8734/execute-script-on-start-up).
+1. Make sure you are in the home directory: `$ cd ~`
+2. Create a starting script file: `$ sudo nano /etc/init.d/[script name]`.
+3. Make the script executable: `$ sudo chmod 755 /etc/init.d/[script name]`.
+4. Register script to be run at startup: `$ sudo update-rc.d [scrip name] 
+defaults`.
+5. Open `/etc/rc.loacal` and add `./etc/init.d/[script name]` at the end of 
+the file.
+6. `sudo reboot` and check whether ssh service started automatically.
+
+### Install python3.6
+Refer to [Github](https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37f).
+1. Install the required build-tools:
+
+        $ sudo apt-get update
+        $ sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
+2. Download and install Python3.6:
+
+        $ wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
+        $ tar xf Python-3.6.5.tar.xz
+        $ cd Python-3.6.5
+        $ ./configure
+        $ make
+        $ sudo make altinstall
+        

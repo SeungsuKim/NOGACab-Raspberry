@@ -103,3 +103,14 @@ Refer to [Github](https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37
         $ make
         $ sudo make altinstall
         
+### Make a virtual environment
+1. Clone the online git repository: <br>
+`$ git clone https://github.com/SeungsuKim/NOGACab-Raspberry.git`
+2. Change directory to the cloned repository: <br>
+`$ cd NOGACab-Raspberry`
+3. Check where python3.6 is located: <br>
+`$ whereis python3.6`
+4. Make new virtual environment with python3.6: <br>
+`$ virtualenv --python=[path of python3.6] env_NOGACab-Raspberry`
+5. Install every required packages: <br>
+`$ sudo pip install -r requirements.txt`

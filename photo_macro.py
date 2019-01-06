@@ -23,7 +23,7 @@ if __name__ == "__main__":
                 break
 
             # Upload the image to S3 server.
-            upload_image(imagepath, "bucket-nogacab/" + imagename)
+            upload_image(imagepath, "bucket-nogacab/images/" + imagename)
 
             # Reset the time from last shot.
             time_last_shot = datetime.now()

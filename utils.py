@@ -22,5 +22,7 @@ class ObjDict(dict):
 
 # Returns a ObjDict object containing certificate.
 def load_yaml_config(filename):
+    print("Start loading {}".format(filename))
     with open(filename, 'r') as stream:
+        print("Loaded {}".format(filename))
         return ObjDict(yaml.load(stream))

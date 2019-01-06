@@ -12,6 +12,9 @@ if __name__ == "__main__":
 
     while True:
         if (datetime.now() - time_last_shot).seconds > time_interval:
+            # Reset the time from last shot.
+            time_last_shot = datetime.now()
+
             # Take a photo and save it with current time.
             imagename = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + ".jpg"
             imagepath = "images/" + imagename
@@ -25,5 +28,3 @@ if __name__ == "__main__":
             # Upload the image to S3 server.
             upload_image(imagepath, "bucket-nogacab/images/" + imagename)
 
-            # Reset the time from last shot.
-            time_last_shot = datetime.now()

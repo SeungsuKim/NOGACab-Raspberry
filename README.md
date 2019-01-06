@@ -114,3 +114,10 @@ Refer to [Github](https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37
 `$ virtualenv --python=[path of python3.6] env_NOGACab-Raspberry`
 5. Install every required packages: <br>
 `$ sudo pip install -r requirements.txt`
+
+If you want to apply the updates from online git repository after you cloned
+ it,
+1. Pull the changed files: <br>
+`$ git pull origin master`
+2. Install new required packages: <br>
+`$ sudo pip install -r requirements.txt`

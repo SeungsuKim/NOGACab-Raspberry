@@ -11,7 +11,7 @@ if __name__ == "__main__":
     time_last_shot = datetime.now()
 
     while True:
-        if (datetime.now() - time_last_shot).seconds > time_interval:
+        if (datetime.now() - time_last_shot).seconds >= time_interval:
             # Reset the time from last shot.
             time_last_shot = datetime.now()
 

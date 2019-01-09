@@ -16,7 +16,7 @@ if __name__ == "__main__":
             time_last_shot = datetime.now()
 
             # Take a photo and save it with current time.
-            imagename = datetime.now().strftime('%Y-%m-%d-%H:%M:%S') + ".jpg"
+            imagename = datetime.now().isoformat('T') + 'Z' + ".jpg"
             imagepath = "images/" + imagename
             result = subprocess.run(['fswebcam', '-r', '1920x1080', imagepath])
 
